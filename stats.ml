@@ -23,13 +23,13 @@ let mean (l : float list)  = (sum l) /. float_of_int (List.length l)
 let square x = x*.x
 ;;
 
-let rec var' l n mu =
+let rec var' l mu =
 match l with
-| [] -> 1. /. n
-| h::t -> square (h -. mu) +. (var' t n mu)
+| [] -> 0.
+| h::t -> square (h -. mu) +. (var' t mu)
 ;;
 
-let rec var l = var' l (float_of_int (List.length l)) (mean l)
+let rec var l = (1. /. (float_of_int (List.length l))) *. var' l (mean l)
 ;;
 
 let stdev l = square (var l)
