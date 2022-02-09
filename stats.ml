@@ -68,6 +68,8 @@ let indx l n = List.nth l n
 let indx2d l n_x n_y = List.nth (List.nth l n_x) n_y
 ;;
 
+(* PLOTTING *)
+
 let rec gen_xy l f =
 match l with
 | [] -> []
@@ -78,6 +80,11 @@ let rec desmos_xy pts =
 match pts with
 | [] -> nan
 | (x,y)::t -> (Printf.printf "(%4f,%4f)," x y); (desmos_xy t)
+;;
+
+(* Calc. *)
+
+let grad f x = ((f (x +. 0.00000001)) -. (f x)) /. ((x +. 0.00000001) -. x)
 ;;
 
 
